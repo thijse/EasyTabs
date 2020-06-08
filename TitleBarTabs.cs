@@ -76,6 +76,9 @@ namespace EasyTabs
 			// window itself has a transparent background color (otherwise the non-client area will simply be black when the window is maximized)
 			SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 
+			if (Environment.OSVersion.Version.Major >= 6)
+				SetProcessDPIAware();
+
 			Tooltip = new ToolTip
 			{
 				AutoPopDelay = 5000,
@@ -956,5 +959,9 @@ namespace EasyTabs
 
 			return hitTests[row, column];
 		}
+
+
+		[System.Runtime.InteropServices.DllImport("user32.dll")]
+		private static extern bool SetProcessDPIAware();
 	}
 }

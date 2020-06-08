@@ -85,10 +85,11 @@ namespace EasyTabs
 		/// <param name="parentWindow">The parent window that this renderer instance belongs to.</param>
 		protected BaseTabRenderer(TitleBarTabs parentWindow)
 		{
-			_parentWindow = parentWindow;
-			ShowAddButton = true;
+			_parentWindow             = parentWindow;
+			ShowAddButton             = true;
 			TabRepositionDragDistance = 10;
-			TabTearDragDistance = 10;
+			TabTearDragDistance       = 10;
+			TabFont                   = SystemFonts.CaptionFont;
 
 			parentWindow.Tabs.CollectionModified += Tabs_CollectionModified;
 
@@ -111,6 +112,14 @@ namespace EasyTabs
 
 		/// <summary>Flag indicating whether or not we should display the add button.</summary>
 		public bool ShowAddButton
+		{
+			get;
+			set;
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public Font TabFont
 		{
 			get;
 			set;
@@ -718,8 +727,10 @@ namespace EasyTabs
 					  CloseButtonMarginRight
 					: 0))
 			{
+	//            tabfont.Size = 10;
 				graphicsContext.DrawString(
-					tab.Caption, SystemFonts.CaptionFont, Brushes.Black,
+					//tab.Caption, SystemFonts.CaptionFont, Brushes.Black,
+					tab.Caption, TabFont, Brushes.Black,
 					new Rectangle(
 						area.X + OverlapWidth + CaptionMarginLeft + (tab.Content.ShowIcon
 							? IconMarginLeft +

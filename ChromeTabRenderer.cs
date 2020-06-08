@@ -16,27 +16,27 @@ namespace EasyTabs
 			: base(parentWindow)
 		{
 			// Initialize the various images to use during rendering
-			_activeLeftSideImage = Resources.ChromeLeft;
-			_activeRightSideImage = Resources.ChromeRight;
-			_activeCenterImage = Resources.ChromeCenter;
-			_inactiveLeftSideImage = Resources.ChromeInactiveLeft;
+			_activeLeftSideImage    = Resources.ChromeLeft;
+			_activeRightSideImage   = Resources.ChromeRight;
+			_activeCenterImage      = Resources.ChromeCenter;
+			_inactiveLeftSideImage  = Resources.ChromeInactiveLeft;
 			_inactiveRightSideImage = Resources.ChromeInactiveRight;
-			_inactiveCenterImage = Resources.ChromeInactiveCenter;
-			_closeButtonImage = Resources.ChromeClose;
-			_closeButtonHoverImage = Resources.ChromeCloseHover;
-			_background = Resources.ChromeBackground;
-			_addButtonImage = new Bitmap(Resources.ChromeAdd);
-			_addButtonHoverImage = new Bitmap(Resources.ChromeAddHover);
-
+			_inactiveCenterImage    = Resources.ChromeInactiveCenter;
+			_closeButtonImage       = Resources.ChromeClose;
+			_closeButtonHoverImage  = Resources.ChromeCloseHover;
+			_background             = Resources.ChromeBackground;
+			_addButtonImage         = new Bitmap(Resources.ChromeAdd);
+			_addButtonHoverImage    = new Bitmap(Resources.ChromeAddHover);
+			TabFont                 = new Font(SystemFonts.CaptionFont.FontFamily, 9);
 			// Set the various positioning properties
-			CloseButtonMarginTop = 6;
-			CloseButtonMarginLeft = 2;
-			AddButtonMarginTop = 7;
-			AddButtonMarginLeft = -1;
-			CaptionMarginTop = 6;
-			IconMarginTop = 7;
-			IconMarginRight = 5;
-			AddButtonMarginRight = 5;
+			CloseButtonMarginTop    = 6;
+			CloseButtonMarginLeft   = 2;
+			AddButtonMarginTop      = 7;
+			AddButtonMarginLeft     = -1;
+			CaptionMarginTop        = 6;
+			IconMarginTop           = 7;
+			IconMarginRight         = 5;
+			AddButtonMarginRight    = 5;
 		}
 
         /// <summary>

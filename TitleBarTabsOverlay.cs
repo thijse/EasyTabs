@@ -23,6 +23,9 @@ namespace EasyTabs
 	/// </summary>
 	public class TitleBarTabsOverlay : Form
 	{
+		/// <summary>
+		/// Show tooltip timer
+		/// </summary>
 		protected Timer showTooltipTimer;
 
 		/// <summary>All of the parent forms and their overlays so that we don't create duplicate overlays across the application domain.</summary>
