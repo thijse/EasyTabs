@@ -9,7 +9,8 @@ namespace TestApp
             InitializeComponent();
 
             AeroPeekEnabled = true;
-            TabRenderer = new ChromeTabRenderer(this);
+            //TabRenderer = new ClassicChromeTabRenderer(this);
+            TabRenderer = new ModernChromeTabRenderer(this);
             Icon = Resources.DefaultIcon;
         }
 

@@ -116,6 +116,15 @@ namespace TestApp
 
         private void forwardButton_Click(object sender, EventArgs e)
         {
+            var t = new TitleBarTab(null)
+                   {
+                       Content = new TabWindow
+                                 {
+                                     Text = "New Tab"
+                                 }
+                   };
+
+            ParentTabs.Tabs.Add(t);
             webBrowser.GoForward();
         }
     }

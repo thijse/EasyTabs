@@ -358,12 +358,15 @@ namespace EasyTabs
 
 			if (WindowState == FormWindowState.Maximized)
 			{
-				topPadding = TabRenderer.TabHeight - SystemInformation.CaptionHeight;
+				//topPadding = TabRenderer.TabHeight - SystemInformation.CaptionHeight;
+                topPadding = TabRenderer.TabHeight - SystemInformation.CaptionHeight + TabRenderer.MaximizedWindowTabTopOffset+1; // Todo figure out 1 fudge factor
 			}
 
 			else
 			{
-				topPadding = (TabRenderer.TabHeight + SystemInformation.CaptionButtonSize.Height) - SystemInformation.CaptionHeight;
+				//topPadding = (TabRenderer.TabHeight + SystemInformation.CaptionButtonSize.Height) - SystemInformation.CaptionHeight;
+                topPadding = TabRenderer.TabHeight - SystemInformation.CaptionHeight + TabRenderer.WindowTabTopOffset-7; // Todo figure out 5 fudge factor
+
 			}
 
 			Padding = new Padding(

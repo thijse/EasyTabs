@@ -19,7 +19,7 @@ namespace EasyTabs {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,9 +63,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeAdd {
+        internal static System.Drawing.Bitmap ClassicChromeAdd {
             get {
-                object obj = ResourceManager.GetObject("ChromeAdd", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeAddHover {
+        internal static System.Drawing.Bitmap ClassicChromeAddHover {
             get {
-                object obj = ResourceManager.GetObject("ChromeAddHover", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeAddHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeBackground {
+        internal static System.Drawing.Bitmap ClassicChromeBackground {
             get {
-                object obj = ResourceManager.GetObject("ChromeBackground", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeCenter {
+        internal static System.Drawing.Bitmap ClassicChromeCenter {
             get {
-                object obj = ResourceManager.GetObject("ChromeCenter", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeCenter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeClose {
+        internal static System.Drawing.Bitmap ClassicChromeClose {
             get {
-                object obj = ResourceManager.GetObject("ChromeClose", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeClose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeCloseHover {
+        internal static System.Drawing.Bitmap ClassicChromeCloseHover {
             get {
-                object obj = ResourceManager.GetObject("ChromeCloseHover", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeCloseHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeInactiveCenter {
+        internal static System.Drawing.Bitmap ClassicChromeInactiveCenter {
             get {
-                object obj = ResourceManager.GetObject("ChromeInactiveCenter", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeInactiveCenter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeInactiveLeft {
+        internal static System.Drawing.Bitmap ClassicChromeInactiveLeft {
             get {
-                object obj = ResourceManager.GetObject("ChromeInactiveLeft", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeInactiveLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeInactiveRight {
+        internal static System.Drawing.Bitmap ClassicChromeInactiveRight {
             get {
-                object obj = ResourceManager.GetObject("ChromeInactiveRight", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeInactiveRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeInactiveRightShadow {
+        internal static System.Drawing.Bitmap ClassicChromeInactiveRightShadow {
             get {
-                object obj = ResourceManager.GetObject("ChromeInactiveRightShadow", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeInactiveRightShadow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeLeft {
+        internal static System.Drawing.Bitmap ClassicChromeLeft {
             get {
-                object obj = ResourceManager.GetObject("ChromeLeft", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeLeft", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,129 @@ namespace EasyTabs {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ChromeRight {
+        internal static System.Drawing.Bitmap ClassicChromeRight {
             get {
-                object obj = ResourceManager.GetObject("ChromeRight", resourceCulture);
+                object obj = ResourceManager.GetObject("ClassicChromeRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeAdd {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeAdd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeAddHover {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeAddHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeBackground {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeCenter {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeCenter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeClose {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeCloseHover {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeCloseHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeInactiveCenter {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeInactiveCenter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeInactiveLeft {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeInactiveLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeInactiveRight {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeInactiveRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeInactiveRightShadow {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeInactiveRightShadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeLeft {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModernChromeRight {
+            get {
+                object obj = ResourceManager.GetObject("ModernChromeRight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

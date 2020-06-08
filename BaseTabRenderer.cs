@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace EasyTabs
 {
 	/// <summary>
 	/// Provides the base functionality for any tab renderer, taking care of actually rendering and detecting whether the cursor is over a tab.  Any custom
-	/// tab renderer needs to inherit from this class, just as <see cref="ChromeTabRenderer" /> does.
+	/// tab renderer needs to inherit from this class, just as <see cref="ClassicChromeTabRenderer" /> does.
 	/// </summary>
 	public abstract class BaseTabRenderer
 	{
@@ -81,15 +82,21 @@ namespace EasyTabs
 		/// <summary>Flag indicating whether or not a tab was being repositioned.</summary>
 		protected bool _wasTabRepositioning = false;
 
-		/// <summary>Default constructor that initializes the <see cref="_parentWindow" /> and <see cref="ShowAddButton" /> properties.</summary>
+        private int _windowTabTopOffset;
+        private int _maximizedWindowTabTopOffset;
+
+        /// <summary>Default constructor that initializes the <see cref="_parentWindow" /> and <see cref="ShowAddButton" /> properties.</summary>
 		/// <param name="parentWindow">The parent window that this renderer instance belongs to.</param>
 		protected BaseTabRenderer(TitleBarTabs parentWindow)
 		{
-			_parentWindow             = parentWindow;
-			ShowAddButton             = true;
-			TabRepositionDragDistance = 10;
-			TabTearDragDistance       = 10;
-			TabFont                   = SystemFonts.CaptionFont;
+			_parentWindow               = parentWindow;
+			ShowAddButton               = true;
+			TabRepositionDragDistance   = 10;
+			TabTearDragDistance         = 10;
+			TabFont                     = SystemFonts.CaptionFont;
+			TabColor                    = Brushes.Black;
+			WindowTabTopOffset          = 10;//SystemInformation.VerticalResizeBorderThickness; //SystemInformation.CaptionHeight;
+            MaximizedWindowTabTopOffset = 0;//SystemInformation.VerticalResizeBorderThickness;
 
 			parentWindow.Tabs.CollectionModified += Tabs_CollectionModified;
 
@@ -116,14 +123,24 @@ namespace EasyTabs
 			get;
 			set;
 		}
+
 		/// <summary>
-		/// 
+		/// Font of text in tab
 		/// </summary>
 		public Font TabFont
 		{
 			get;
 			set;
 		}
+
+		/// <summary>
+		/// Color of text in tab
+		/// </summary>
+		public Brush TabColor
+        {
+            get;
+            set;
+        }
 
 		/// <summary>Amount of space we should put to the left of the caption when rendering the content area of the tab.</summary>
 		public int CaptionMarginLeft
@@ -272,10 +289,28 @@ namespace EasyTabs
 			}
 		}
 
-		/// <summary>Initialize the <see cref="_dragStart" /> and <see cref="_tabClickOffset" /> fields in case the user starts dragging a tab.</summary>
-		/// <param name="sender">Object from which this event originated.</param>
-		/// <param name="e">Arguments associated with the event.</param>
-		protected internal virtual void Overlay_MouseDown(object sender, MouseEventArgs e)
+		/// <summary>
+		/// Vertical offset of the Tab when the window is maximized
+		/// </summary>
+        public int MaximizedWindowTabTopOffset
+        {
+            get => _maximizedWindowTabTopOffset;
+            set => _maximizedWindowTabTopOffset = value;
+        }
+
+        /// <summary>
+        /// Vertical offset of the Tab 
+        /// </summary>
+        public int WindowTabTopOffset
+        {
+            get => _windowTabTopOffset;
+            set => _windowTabTopOffset = value;
+        }
+
+        /// <summary>Initialize the <see cref="_dragStart" /> and <see cref="_tabClickOffset" /> fields in case the user starts dragging a tab.</summary>
+        /// <param name="sender">Object from which this event originated.</param>
+        /// <param name="e">Arguments associated with the event.</param>
+        protected internal virtual void Overlay_MouseDown(object sender, MouseEventArgs e)
 		{
 			_wasTabRepositioning = false;
 			_dragStart = e.Location;
@@ -405,10 +440,9 @@ namespace EasyTabs
 		{
 			if (!area.Contains(cursor))
 			{
-				return false;
+                return false;
 			}
-
-			// Get the relative location of the cursor within the image and then get the RGBA value of that pixel
+            // Get the relative location of the cursor within the image and then get the RGBA value of that pixel
 			Point relativePoint = new Point(cursor.X - area.Location.X, cursor.Y - area.Location.Y);
 			Color pixel = image.GetPixel(relativePoint.X, relativePoint.Y);
 
@@ -620,6 +654,7 @@ namespace EasyTabs
 
 			_previousTabCount = tabs.Count;
 
+			
 			// Render the add tab button to the screen
 			if (ShowAddButton && !IsTabRepositioning)
 			{
@@ -727,10 +762,11 @@ namespace EasyTabs
 					  CloseButtonMarginRight
 					: 0))
 			{
+				
 	//            tabfont.Size = 10;
 				graphicsContext.DrawString(
 					//tab.Caption, SystemFonts.CaptionFont, Brushes.Black,
-					tab.Caption, TabFont, Brushes.Black,
+					tab.Caption, TabFont, TabColor,
 					new Rectangle(
 						area.X + OverlapWidth + CaptionMarginLeft + (tab.Content.ShowIcon
 							? IconMarginLeft +

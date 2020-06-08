@@ -705,8 +705,8 @@ namespace EasyTabs
 				Top = _parentForm.Top + (DisplayType == DisplayType.Classic
 					? SystemInformation.VerticalResizeBorderThickness
 					: _parentForm.WindowState == FormWindowState.Maximized
-						? SystemInformation.VerticalResizeBorderThickness + borderPadding
-						: SystemInformation.CaptionHeight + borderPadding);
+						? _parentForm.TabRenderer.MaximizedWindowTabTopOffset + SystemInformation.VerticalResizeBorderThickness + borderPadding
+						: _parentForm.TabRenderer.WindowTabTopOffset                                                            + borderPadding-7);
 				Left = _parentForm.Left + SystemInformation.HorizontalResizeBorderThickness - SystemInformation.BorderSize.Width + borderPadding;
 				Width = _parentForm.Width - ((SystemInformation.VerticalResizeBorderThickness + borderPadding) * 2) + (SystemInformation.BorderSize.Width * 2);
 				Height = _parentForm.TabRenderer.TabHeight + (DisplayType == DisplayType.Classic && _parentForm.WindowState != FormWindowState.Maximized
