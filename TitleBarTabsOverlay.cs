@@ -24,6 +24,34 @@ namespace EasyTabs
 	public class TitleBarTabsOverlay : Form
 	{
 		/// <summary>
+		/// Event is triggered when the Add new tab event is clicked
+		/// </summary>
+        public event Action AddNewTabEvent;
+
+        /// <summary>
+        /// Event is triggered when the Add new tab event is clicked
+        /// </summary>
+        public event Action CloseTabEvent;
+
+		/// <summary>
+		/// Automatically add a tab when add button is pushed
+		/// </summary>
+		public bool AutoAddNewTab
+		{
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Automatically close the tab when close button is pushed
+        /// </summary>
+		public bool AutoCloseTab
+        {
+            get;
+            set;
+        }
+
+		/// <summary>
 		/// Show tooltip timer
 		/// </summary>
 		protected Timer showTooltipTimer;
@@ -929,16 +957,19 @@ namespace EasyTabs
 							// If the user clicks the middle button/scroll wheel over a tab, close it
 							if ((WM) m.Msg == WM.WM_MBUTTONUP || (WM) m.Msg == WM.WM_NCMBUTTONUP)
 							{
-								clickedTab.Content.Close();
-								Render();
-							}
+								CloseTabEvent?.Invoke();
+                                if (AutoCloseTab) { clickedTab.Content.Close(); }
+                                Render();
+                                
+                            }
 
 							else
 							{
 								// If the user clicked the close button, remove the tab from the list
 								if (_parentForm.TabRenderer.IsOverCloseButton(clickedTab, relativeCursorPosition2))
 								{
-									clickedTab.Content.Close();
+                                    CloseTabEvent?.Invoke();
+                                    if (AutoCloseTab) { clickedTab.Content.Close(); }
 									Render();
 								}
 
@@ -959,7 +990,8 @@ namespace EasyTabs
 						// Otherwise, if the user clicked the add button, call CreateTab to add a new tab to the list and select it
 						else if (_parentForm.TabRenderer.IsOverAddButton(relativeCursorPosition2))
 						{
-							_parentForm.AddNewTab();
+                            if (AutoAddNewTab) { _parentForm.AddNewTab(); }
+                            AddNewTabEvent?.Invoke();
 						}
 
 						if ((WM) m.Msg == WM.WM_LBUTTONUP || (WM) m.Msg == WM.WM_NCLBUTTONUP)
