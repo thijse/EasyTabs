@@ -66,8 +66,11 @@ namespace EasyTabs
 		protected TitleBarTabs()
 		{
 			_previousWindowState = null;
-			ExitOnLastTabClose = true;
-			InitializeComponent();
+			ExitOnLastTabClose   = true;
+            AutoCreateTab        = true;
+            AutoCloseTab         = true;
+
+            InitializeComponent();
 			SetWindowThemeAttributes(WTNCA.NODRAWCAPTION | WTNCA.NODRAWICON);
 
 			_tabs.CollectionModified += _tabs_CollectionModified;
@@ -272,6 +275,25 @@ namespace EasyTabs
 			}
 		}
 
+        /// <summary>
+        /// Automatically add a tab when add button is pushed
+        /// </summary>
+        public bool AutoCreateTab
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Automatically close the tab when close button is pushed
+        /// </summary>
+        public bool AutoCloseTab
+        {
+            get;
+            set;
+        }
+
+
 		/// <summary>Flag indicating whether the application itself should exit when the last tab is closed.</summary>
 		public bool ExitOnLastTabClose
 		{
@@ -417,6 +439,12 @@ namespace EasyTabs
 		/// <summary>Event that is raised after a tab has been clicked.</summary>
 		public event TitleBarTabEventHandler TabClicked;
 
+        /// <summary>Event that is raised after a tab has been closed.</summary>
+        public event TitleBarTabEventHandler TabClosed;
+
+        /// <summary>Event that is raised after a tab has been created.</summary>
+        public event TitleBarTabEventHandler TabCreated;
+
 		/// <summary>
 		/// Callback that should be implemented by the inheriting class that will create a new <see cref="TitleBarTab" /> object when the add button is
 		/// clicked.
@@ -451,6 +479,15 @@ namespace EasyTabs
 				TabDeselecting(this, e);
 			}
 		}
+
+		/// <summary>
+		/// Callback for the <see cref="TabClosed" /> event.  Called when <see cref="TitleBarTab" /> is closed
+        /// </summary>
+		/// <param name="e">Arguments associated with the event.</param>
+		public void OnTabClosed(TitleBarTabEventArgs e)
+        {
+            TabClosed?.Invoke(this,e);
+        }
 
 		/// <summary>Generate a new thumbnail image for <paramref name="tab" />.</summary>
 		/// <param name="tab">Tab that we need to generate a thumbnail for.</param>
@@ -842,12 +879,25 @@ namespace EasyTabs
 		/// <summary>Calls <see cref="CreateTab" />, adds the resulting tab to the <see cref="Tabs" /> collection, and activates it.</summary>
 		public virtual void AddNewTab()
 		{
-			TitleBarTab newTab = CreateTab();
+            TitleBarTab newTab = null;
 
-			Tabs.Add(newTab);
-			ResizeTabContents(newTab);
+            if (AutoCreateTab)
+            {
+                newTab = CreateTab();
+                Tabs.Add(newTab);
+                ResizeTabContents(newTab);
+                SelectedTabIndex = _tabs.Count - 1;
+			}
 
-			SelectedTabIndex = _tabs.Count - 1;
+            var titleBarTabEventArgs = new TitleBarTabEventArgs
+            {
+                Tab         = newTab,
+                TabIndex    = SelectedTabIndex,
+                Action      = TabControlAction.Selected,
+                WasDragging = false
+            };
+            TabCreated?.Invoke(this, titleBarTabEventArgs);
+
 		}
 
 		/// <summary>Removes <paramref name="closingTab" /> from <see cref="Tabs" /> and selects the next applicable tab in the list.</summary>

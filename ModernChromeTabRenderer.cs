@@ -37,7 +37,7 @@ namespace EasyTabs
 			CaptionMarginTop            =  6;
 			IconMarginTop               =  7;
 			IconMarginRight             =  5;
-			AddButtonMarginRight        =  5;
+			AddButtonMarginRight        =  60;
             WindowTabTopOffset          =  10;
             MaximizedWindowTabTopOffset =  10;
 		}

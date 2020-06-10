@@ -307,6 +307,12 @@ namespace EasyTabs
             set => _windowTabTopOffset = value;
         }
 
+        public bool AutoMinimumWidth
+		{
+            get;
+            set;
+        }
+
         /// <summary>Initialize the <see cref="_dragStart" /> and <see cref="_tabClickOffset" /> fields in case the user starts dragging a tab.</summary>
         /// <param name="sender">Object from which this event originated.</param>
         /// <param name="e">Arguments associated with the event.</param>
@@ -368,6 +374,8 @@ namespace EasyTabs
 				return;
 			}
 
+
+			if (!AutoMinimumWidth) return;
 			int minimumWidth = tabs.Sum(
 				tab => GetTabLeftImage(tab).Width + GetTabRightImage(tab).Width + (tab.ShowCloseButton
 						   ? tab.CloseButtonArea.Width + CloseButtonMarginLeft
@@ -377,18 +385,19 @@ namespace EasyTabs
 
 			minimumWidth += (_parentWindow.ControlBox
 								? SystemInformation.CaptionButtonSize.Width
-								: 0) -
+								: 0) +
 							(_parentWindow.MinimizeBox
 								? SystemInformation.CaptionButtonSize.Width
-								: 0) -
+								: 0) +
 							(_parentWindow.MaximizeBox
 								? SystemInformation.CaptionButtonSize.Width
-								: 0) + (ShowAddButton
+								: 0) + 
+                            (ShowAddButton
 								? _addButtonImage.Width + AddButtonMarginLeft +
 								  AddButtonMarginRight
 								: 0);
 
-			_parentWindow.MinimumSize = new Size(minimumWidth, 0);
+			_parentWindow.MinimumSize = new Size(minimumWidth, _parentWindow.MinimumSize.Height);
 		}
 
 		/// <summary>

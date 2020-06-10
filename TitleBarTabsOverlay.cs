@@ -24,34 +24,6 @@ namespace EasyTabs
 	public class TitleBarTabsOverlay : Form
 	{
 		/// <summary>
-		/// Event is triggered when the Add new tab event is clicked
-		/// </summary>
-        public event Action AddNewTabEvent;
-
-        /// <summary>
-        /// Event is triggered when the Add new tab event is clicked
-        /// </summary>
-        public event Action CloseTabEvent;
-
-		/// <summary>
-		/// Automatically add a tab when add button is pushed
-		/// </summary>
-		public bool AutoAddNewTab
-		{
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Automatically close the tab when close button is pushed
-        /// </summary>
-		public bool AutoCloseTab
-        {
-            get;
-            set;
-        }
-
-		/// <summary>
 		/// Show tooltip timer
 		/// </summary>
 		protected Timer showTooltipTimer;
@@ -119,11 +91,11 @@ namespace EasyTabs
 			_parentForm = parentForm;
 
 			// We don't want this window visible in the taskbar
-			ShowInTaskbar = false;
+			ShowInTaskbar   = false;
 			FormBorderStyle = FormBorderStyle.Sizable;
-			MinimizeBox = false;
-			MaximizeBox = false;
-			_aeroEnabled = _parentForm.IsCompositionEnabled;
+			MinimizeBox     = false;
+			MaximizeBox     = false;
+			_aeroEnabled    = _parentForm.IsCompositionEnabled;
 
 			Show(_parentForm);
 			AttachHandlers();
@@ -956,11 +928,10 @@ namespace EasyTabs
 						{
 							// If the user clicks the middle button/scroll wheel over a tab, close it
 							if ((WM) m.Msg == WM.WM_MBUTTONUP || (WM) m.Msg == WM.WM_NCMBUTTONUP)
-							{
-								CloseTabEvent?.Invoke();
-                                if (AutoCloseTab) { clickedTab.Content.Close(); }
+                            {
+                                CloseTab(clickedTab);
+
                                 Render();
-                                
                             }
 
 							else
@@ -968,8 +939,7 @@ namespace EasyTabs
 								// If the user clicked the close button, remove the tab from the list
 								if (_parentForm.TabRenderer.IsOverCloseButton(clickedTab, relativeCursorPosition2))
 								{
-                                    CloseTabEvent?.Invoke();
-                                    if (AutoCloseTab) { clickedTab.Content.Close(); }
+                                    CloseTab(clickedTab);
 									Render();
 								}
 
@@ -978,9 +948,9 @@ namespace EasyTabs
 									_parentForm.OnTabClicked(
 										new TitleBarTabEventArgs
 										{
-											Tab = clickedTab,
-											TabIndex = _parentForm.SelectedTabIndex,
-											Action = TabControlAction.Selected,
+											Tab         = clickedTab,
+											TabIndex    = _parentForm.SelectedTabIndex,
+											Action      = TabControlAction.Selected,
 											WasDragging = _wasDragging
 										});
 								}
@@ -990,8 +960,9 @@ namespace EasyTabs
 						// Otherwise, if the user clicked the add button, call CreateTab to add a new tab to the list and select it
 						else if (_parentForm.TabRenderer.IsOverAddButton(relativeCursorPosition2))
 						{
-                            if (AutoAddNewTab) { _parentForm.AddNewTab(); }
-                            AddNewTabEvent?.Invoke();
+                             _parentForm.AddNewTab(); 
+
+
 						}
 
 						if ((WM) m.Msg == WM.WM_LBUTTONUP || (WM) m.Msg == WM.WM_NCLBUTTONUP)
@@ -1008,7 +979,24 @@ namespace EasyTabs
 			}
 		}
 
-		/// <summary>Event handler that is called when <see cref="_parentForm" />'s <see cref="Form.Activated" /> event is fired.</summary>
+        private void CloseTab(TitleBarTab clickedTab)
+        {
+            if (_parentForm.AutoCloseTab)
+            {
+                clickedTab.Content.Close();
+            }
+
+            _parentForm.OnTabClosed(
+                new TitleBarTabEventArgs
+                {
+                    Tab         = clickedTab,
+                    TabIndex    = _parentForm.SelectedTabIndex,
+                    Action      = null,
+                    WasDragging = false
+                });
+        }
+
+        /// <summary>Event handler that is called when <see cref="_parentForm" />'s <see cref="Form.Activated" /> event is fired.</summary>
 		/// <param name="sender">Object from which this event originated.</param>
 		/// <param name="e">Arguments associated with the event.</param>
 		private void _parentForm_Activated(object sender, EventArgs e)
